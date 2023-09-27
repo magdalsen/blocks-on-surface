@@ -84,13 +84,6 @@ useEffect(() => {
         </div>
       </div>
       <div className='block-container'>
-      {/* {newArr.map((el) => (
-              <div>
-              {_.times(el === 0 ? el+1 : el, (i) => (
-                el === 0 ? <div className='block-one block-transparent' key={i}></div> : <div className='block-one block-drop' key={i}>rep {el} times</div>
-              ))}
-            </div>
-            ))} */}
         {myFinalArr.map((el) => (
             <div className='block' key={Math.random()}>
               {_.times(el, (i) => (
