@@ -17,7 +17,7 @@ On the right side user will see total number of added blocks (water drops) added
 ## Run
 
 - Local: command 'npm run dev' in the project folder
-- Deploy: https://blocks-on-surface.vercel.app/
+- Deploy: https://magdalsen.github.io/blocks-on-surface/
 
 ## Author
 
