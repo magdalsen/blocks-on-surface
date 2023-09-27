@@ -68,6 +68,7 @@ useEffect(() => {
         <div className='block-nav__el'>
           <form onSubmit={handleSubmit}>
             <label>Enter numbers:</label>
+            <div className='label-text'>If you want to check another number, remove completly old one and then write new one</div>
               <div>
               <input 
                 type="number" 

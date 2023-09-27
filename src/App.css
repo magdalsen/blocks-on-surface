@@ -50,3 +50,8 @@
 .block-nav__el {
   margin:  0 20px 0 20px;
 }
+
+.label-text {
+  font-size: 10px;
+  white-space: pre-line;
+}
