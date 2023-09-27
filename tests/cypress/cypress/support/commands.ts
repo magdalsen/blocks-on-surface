@@ -5,7 +5,7 @@ Cypress.Commands.add('typeNumbersAndClickButton', (numbers) => {
 
 Cypress.Commands.add('checkResults', (numbers) => {
     cy.get('[data-cy="sumAddedBlocks"]').then($drops => {
-        const textValue = $drops.text();            
+        const textValue = $drops.text();
     cy.get('div[class="block-container"]')
         .find('div[class="block-one"]')
         .should('have.length', Number(blocksSum(numbers)) + Number(textValue));
