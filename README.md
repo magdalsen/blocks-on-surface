@@ -12,12 +12,15 @@ On the right side user will see total number of added blocks (water drops) added
 
 - React + Vite + TypeScript
 - lodash
-- Prettier, Eslint
 
-## Run
+## Run app
 
 - Local: command 'npm run dev' in the project folder
 - Deploy: https://magdalsen.github.io/blocks-on-surface/
+
+## Run tests
+
+- Local: command 'npx cypress open' or 'npx cypress run' in the cypress folder
 
 ## Author
 
