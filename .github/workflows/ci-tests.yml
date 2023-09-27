@@ -13,5 +13,5 @@ jobs:
         with:
           config-file: cypress.config.ts
           working-directory: cypress
-          build: npx cypress run
-          # start: npm start
+          # build: npx cypress run
+          start: npx cypress run
