@@ -7,7 +7,6 @@
         "cy:run": "cypress run"
     },
     "devDependencies": {
-        "typescript": "^5.2.2",
-        "cypress": "^13.2.0"
+        "typescript": "^5.2.2"
     }
 }
