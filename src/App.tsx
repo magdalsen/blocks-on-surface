@@ -76,11 +76,11 @@ useEffect(() => {
                 onChange={(e) => handleChange(e)}
               />
               </div>
-            <button type="submit" disabled={disabled}>Send</button>
+            <button data-cy="sendButton" type="submit" disabled={disabled}>Send</button>
           </form>
         </div>
         <div className='block-nav__el'>
-          Sum of water drops: <div>{sumAddedBlocks}</div>
+          Sum of water drops: <div data-cy="sumAddedBlocks">{sumAddedBlocks}</div>
         </div>
       </div>
       <div className='block-container'>
@@ -92,7 +92,7 @@ useEffect(() => {
             </div>
             ))} */}
         {myFinalArr.map((el) => (
-            <div className='block'>
+            <div className='block' key={Math.random()}>
               {_.times(el, (i) => (
                 <div className='block-one' key={i}></div>
               ))}
