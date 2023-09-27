@@ -46,9 +46,13 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  color: #4750fa;
+}
+button:disabled {
+  color: aliceblue;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #4750fa;
 }
 button:focus,
 button:focus-visible {
