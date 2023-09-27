@@ -1,27 +1,24 @@
-# React + TypeScript + Vite
+# Fill gaps with water drops
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is my solution of task where all gaps between array of numbers should be covered.
 
-Currently, two official plugins are available:
+## Explanation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To run the app, user should put string of numbers and click "Send" button.
+Below will appear block based visualization with filled gaps.
+On the right side user will see total number of added blocks (water drops) added to primary string.
 
-## Expanding the ESLint configuration
+## Technology
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- React + Vite + TypeScript
+- lodash
+- Prettier, Eslint
 
-- Configure the top-level `parserOptions` property like this:
+## Run
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+- Local: command 'npm run dev' in the project folder
+- Deploy: https://blocks-on-surface.vercel.app/
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Author
+
+E-mail: magdal.sen@gmail.com
