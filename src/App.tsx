@@ -12,7 +12,8 @@ function App() {
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    trap(value);
+    value.length === 0 ? alert('Write a number!') :
+    trap(value) &&
     setDisabled(prev=>!prev);
   }
 
