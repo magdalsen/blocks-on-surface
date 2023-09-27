@@ -1,20 +1,33 @@
-import { ChangeEvent, useState } from 'react';
-import './App.css'
+import { ChangeEvent, useEffect, useState } from 'react';
+import './App.css';
+import _ from 'lodash';
+import './App.css';
 
 function App() {
   const [value, setValue] = useState<number[]>([]);
   const [newArr, setNewArr] = useState<number[]>([]);
+  const [myFinalArr, setMyFinalArr] = useState<number[]>([]);
+  const [sumAddedBlocks, setSumAddedBlocks] = useState<number>(0);
+  const [disabled, setDisabled] = useState<boolean>(false);
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     trap(value);
+    setDisabled(prev=>!prev);
   }
-  console.log(newArr);
+
+  const resetInputData = () => {
+    setDisabled(prev=>!prev);
+    setValue([]);
+    setNewArr([]);
+    setMyFinalArr([]);
+    setSumAddedBlocks(0);
+  }
   
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const toSplit = e.target.value;
     const splited = Array.from(toSplit.toString()).map(Number);
-    setValue(splited);
+    splited.length === 0 ? resetInputData() : setValue(splited);
   }
 
 const trap = (heights: number[]) => {
@@ -32,33 +45,58 @@ const trap = (heights: number[]) => {
     for (let j = i; j < LEN; j++) {
       maxRight = Math.max(maxRight, heights[j]);
     }
-    
+
     res += Math.min(maxLeft, maxRight) - heights[i];
-    // console.log(Math.min(maxLeft, maxRight) - heights[i]);
     setNewArr(prev=>[...prev, Math.min(maxLeft, maxRight) - heights[i]]);
   }
-
+  setSumAddedBlocks(res);
   return res;
 }
 
+useEffect(() => {
+  const finalArr: number[] = [];
+  const firstArrEl = value.slice(0,1);
+  value.slice(1).map((el, i) => {
+    isNaN(newArr[i]) || newArr[i] === undefined ? finalArr.push(el+0) : finalArr.push(el + newArr[i]);
+  });
+  setMyFinalArr(firstArrEl.concat(finalArr));
+}, [newArr]);
+
   return (
     <>
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>Enter numbers:
-          <div>
-          <input 
-            type="number" 
-            onChange={(e) => handleChange(e)}
-          />
-          </div>
-        </label>
-        <input type="submit" />
-      </form>
-    </div>
-      <div>{value.map((el) => (
-        <div>{el}</div>
-      ))}</div>
+      <div className='block-nav'>
+        <div className='block-nav__el'>
+          <form onSubmit={handleSubmit}>
+            <label>Enter numbers:</label>
+              <div>
+              <input 
+                type="number" 
+                onChange={(e) => handleChange(e)}
+              />
+              </div>
+            <button type="submit" disabled={disabled}>Send</button>
+          </form>
+        </div>
+        <div className='block-nav__el'>
+          Sum of water drops: <div>{sumAddedBlocks}</div>
+        </div>
+      </div>
+      <div className='block-container'>
+      {/* {newArr.map((el) => (
+              <div>
+              {_.times(el === 0 ? el+1 : el, (i) => (
+                el === 0 ? <div className='block-one block-transparent' key={i}></div> : <div className='block-one block-drop' key={i}>rep {el} times</div>
+              ))}
+            </div>
+            ))} */}
+        {myFinalArr.map((el) => (
+            <div className='block'>
+              {_.times(el, (i) => (
+                <div className='block-one' key={i}></div>
+              ))}
+            </div>
+        ))}
+      </div>
     </>
   )
 }
