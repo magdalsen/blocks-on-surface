@@ -1,12 +1,13 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, ReactElement, useEffect, useState } from 'react';
 import './App.css';
 import _ from 'lodash';
 import './App.css';
+import React from 'react';
 
 function App() {
   const [value, setValue] = useState<number[]>([]);
   const [newArr, setNewArr] = useState<number[]>([]);
-  const [myFinalArr, setMyFinalArr] = useState<number[]>([]);
+  const [myFinalArr, setMyFinalArr] = useState<ReactElement[]>([]);
   const [sumAddedBlocks, setSumAddedBlocks] = useState<number>(0);
   const [disabled, setDisabled] = useState<boolean>(false);
 
@@ -55,12 +56,39 @@ const trap = (heights: number[]) => {
 }
 
 useEffect(() => {
-  const finalArr: number[] = [];
+  const finalArr: ReactElement[] = [];
   const firstArrEl = value.slice(0,1);
+  const firstArrElFinal: ReactElement[] = [];
+  
   value.slice(1).map((el, i) => {
-    isNaN(newArr[i]) || newArr[i] === undefined ? finalArr.push(el+0) : finalArr.push(el + newArr[i]);
+    isNaN(newArr[i]) || newArr[i] === undefined ?
+    finalArr.push(
+      <div className='block' key={Math.random()}>
+      {_.times(el+0, (i) => (
+         <div className='block-one' key={i}></div>
+      ))}
+      </div>
+    )
+    :
+    finalArr.push(
+      <div className='block' key={Math.random()}>
+      {_.times(el, (i) => (
+        <div className='block-one' key={i}></div>
+      ))}
+      {_.times(newArr[i], (i) => (
+        <div className='block-one block-drop' key={i}></div>
+      ))}
+      </div>
+    )
   });
-  setMyFinalArr(firstArrEl.concat(finalArr));
+
+firstArrElFinal.push(<div className='block' key={Math.random()}>
+  {_.times(firstArrEl[0], (i) => (
+    <div className='block-one' key={i}></div>
+  ))}
+</div>)
+
+  setMyFinalArr(firstArrElFinal.concat(finalArr));
 }, [newArr]);
 
   return (
@@ -85,11 +113,7 @@ useEffect(() => {
       </div>
       <div className='block-container'>
         {myFinalArr.map((el) => (
-            <div className='block' key={Math.random()}>
-              {_.times(el, (i) => (
-                <div className='block-one' key={i}></div>
-              ))}
-            </div>
+          <React.Fragment key={Math.random()}>{el}</React.Fragment>
         ))}
       </div>
     </>
