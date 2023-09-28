@@ -8,8 +8,12 @@ Cypress.Commands.add('checkResults', (numbers) => {
         const textValue = $drops.text();
     cy.get('div[class="block-container"]')
         .find('div[class="block-one"]')
-        .should('have.length', Number(blocksSum(numbers)) + Number(textValue));
+        .should('have.length', Number(blocksSum(numbers)));
+    cy.get('div[class="block-container"]')
+        .find('div[class="block-one block-drop"]')
+        .should('have.length', Number(textValue));
     })
+
 })
 
 const blocksSum = (numbers: string) => {
